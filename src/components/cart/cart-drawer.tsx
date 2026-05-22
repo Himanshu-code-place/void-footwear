@@ -1,6 +1,6 @@
 "use client";
 
-import CheckoutButton from "./checkout-button";
+import Link from "next/link";
 import { X } from "lucide-react";
 
 import { useCart } from "../../context/cart-context";
@@ -106,7 +106,11 @@ export default function CartDrawer() {
         {/* FOOTER */}
         <div className="border-t p-6">
           <div className="mt-6">
-            <CheckoutButton />
+            <Link href="/checkout">
+              <button className="w-full bg-black text-white py-5 rounded-full font-semibold hover:bg-zinc-800 transition duration-300">
+                CHECKOUT
+              </button>
+            </Link>
           </div>
         </div>
       </div>
