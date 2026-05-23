@@ -223,7 +223,7 @@ export const authOptions = {
   },
 
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }: any) {
       if (user) {
         token.email = user.email;
 
@@ -233,7 +233,7 @@ export const authOptions = {
       return token;
     },
 
-    async session({ session, token }) {
+    async session({ session, token }: any) {
       if (session.user) {
         session.user.email = token.email as string;
 
