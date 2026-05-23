@@ -150,7 +150,7 @@ export default function CheckoutPage() {
   };
 
   return (
-    <main className="h-screen overflow-hidden bg-[#efede8] flex items-center justify-center px-6 py-6 text-black">
+    <main className="min-h-screen bg-[#efede8] flex items-center justify-center px-6 py-6 pt-36 text-black">
       <div className="w-full max-w-[1280px] grid lg:grid-cols-[1fr_340px] gap-6 items-start">
         {/* LEFT SIDE */}
         <div className="bg-[#f8f7f4] rounded-[32px] p-7 border border-black/5 shadow-[0_20px_60px_rgba(0,0,0,0.05)]">
