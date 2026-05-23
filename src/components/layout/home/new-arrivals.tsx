@@ -107,7 +107,29 @@ export default function NewArrivals() {
                         image: product.image,
                       });
                     }}
-                    className="absolute bottom-4 left-1/2 -translate-x-1/2 translate-y-16 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 bg-white text-black px-6 py-3 rounded-full transition duration-500 font-semibold hover:bg-zinc-200"
+                    className="
+absolute 
+bottom-6 
+left-1/2 
+-translate-x-1/2 
+bg-white 
+text-black 
+px-6 
+py-3 
+rounded-full 
+transition 
+duration-500 
+font-semibold 
+hover:bg-zinc-200
+
+opacity-100
+translate-y-0
+
+md:translate-y-20
+md:opacity-0
+md:group-hover:opacity-100
+md:group-hover:translate-y-0
+"
                   >
                     QUICK ADD
                   </button>
