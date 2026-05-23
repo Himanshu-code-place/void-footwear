@@ -13,8 +13,7 @@ export default function Navbar() {
     const [open, setOpen] = useState(false);
 
     return (
-      <div className="relative">
-        {/* BUTTON */}
+      <div className="relative hidden lg:block">
         <button
           onClick={() => setOpen(!open)}
           className="flex items-center gap-3 px-4 py-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-300"
@@ -32,7 +31,6 @@ export default function Navbar() {
           </span>
         </button>
 
-        {/* DROPDOWN */}
         {open && (
           <div className="absolute right-0 top-[60px] w-52 bg-black/70 backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
             <button className="w-full text-left px-5 py-4 text-sm text-white hover:bg-white/5 transition">
@@ -67,8 +65,6 @@ export default function Navbar() {
 
   const [mounted, setMounted] = useState(false);
 
-  const [profileOpen, setProfileOpen] = useState(false);
-
   const { data: session } = useSession();
 
   useEffect(() => {
@@ -95,7 +91,7 @@ export default function Navbar() {
           : "backdrop-blur-xl bg-black/40 py-3"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 lg:px-6">
         <div className="flex items-center justify-between h-20">
           {/* LEFT */}
           <div className="flex items-center gap-14">
@@ -118,9 +114,8 @@ export default function Navbar() {
             </nav>
           </div>
 
-          {/* RIGHT */}
-          <div className="hidden lg:flex items-center gap-5">
-            {/* SEARCH */}
+          {/* RIGHT DESKTOP */}
+          <div className="hidden lg:flex items-center gap-4">
             <input
               type="text"
               placeholder="Search..."
@@ -140,7 +135,6 @@ export default function Navbar() {
             </button>
 
             {/* AUTH */}
-            {/* AUTH */}
             {session ? (
               <ProfileDropdown name={session.user?.name || "User"} />
             ) : (
@@ -153,10 +147,22 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* MOBILE MENU BUTTON */}
-          <button onClick={() => setMenuOpen(true)} className="lg:hidden">
-            <Menu size={30} />
-          </button>
+          {/* MOBILE RIGHT */}
+          <div className="flex lg:hidden items-center gap-5">
+            {/* MOBILE CART */}
+            <button onClick={() => setCartOpen(true)} className="relative">
+              <ShoppingBag size={26} color="white" />
+
+              <span className="absolute -top-2 -right-2 bg-white text-black text-[10px] rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                {mounted ? cart.length : 0}
+              </span>
+            </button>
+
+            {/* MOBILE MENU */}
+            <button onClick={() => setMenuOpen(true)}>
+              <Menu size={30} color="white" />
+            </button>
+          </div>
         </div>
       </div>
 
@@ -168,15 +174,17 @@ export default function Navbar() {
       >
         {/* TOP */}
         <div className="flex justify-between items-center px-6 h-20 border-b border-zinc-800">
-          <h1 className="text-3xl font-black tracking-widest">VOID</h1>
+          <h1 className="text-3xl font-black tracking-widest text-white">
+            VOID
+          </h1>
 
           <button onClick={() => setMenuOpen(false)}>
-            <X size={30} />
+            <X size={30} color="white" />
           </button>
         </div>
 
         {/* LINKS */}
-        <div className="flex flex-col px-6 py-12 gap-10 text-3xl font-black">
+        <div className="flex flex-col px-6 py-12 gap-10 text-3xl font-black text-white">
           {["MEN", "WOMEN", "NEW ARRIVALS", "COLLECTIONS"].map((item) => (
             <a
               key={item}
@@ -187,6 +195,27 @@ export default function Navbar() {
               {item}
             </a>
           ))}
+
+          {/* MOBILE LOGIN */}
+          {!session && (
+            <a
+              href="/login"
+              className="bg-white text-black py-4 rounded-full text-lg text-center font-bold"
+            >
+              LOGIN
+            </a>
+          )}
+
+          {/* OPEN CART */}
+          <button
+            onClick={() => {
+              setMenuOpen(false);
+              setCartOpen(true);
+            }}
+            className="bg-white text-black py-4 rounded-full text-lg font-bold"
+          >
+            OPEN CART ({mounted ? cart.length : 0})
+          </button>
         </div>
       </div>
     </header>
