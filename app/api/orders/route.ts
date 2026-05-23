@@ -8,7 +8,7 @@ import { authOptions } from "../auth/[...nextauth]/route";
 
 export async function GET() {
   try {
-    const session: any = await getServerSession(authOptions);
+    const session = await getServerSession(authOptions) as { user?: { email?: string } } | null;
     console.log(session);
 
     if (!session?.user?.email) {
