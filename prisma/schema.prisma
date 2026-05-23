@@ -12,53 +12,39 @@ model User {
   name      String
   email     String   @unique
   password  String
+  role      String   @default("USER")
   createdAt DateTime @default(now())
 }
 
 model Product {
-
   id          String   @id @default(cuid())
-
   title       String
-
   description String
-
   price       Float
-
   image       String
-
   category    String
-
   createdAt   DateTime @default(now())
-
 }
 
 model Order {
-
   id            String   @id @default(cuid())
 
   customerName  String
-
   userEmail     String
 
-  phone         String?
-
-  address       String?
-
-  city          String?
-
-  state         String?
-
-  pincode       String?
+  phone         String
+  address       String
+  city          String
+  state         String
+  pincode       String
 
   products      Json
 
   amount        Float
 
-  paymentId     String
+  paymentId     String?
 
-  status        String
+  status        String   @default("pending")
 
   createdAt     DateTime @default(now())
-
 }

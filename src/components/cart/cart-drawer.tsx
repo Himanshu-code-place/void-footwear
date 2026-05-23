@@ -1,7 +1,10 @@
 "use client";
 
 import Link from "next/link";
+
 import { X } from "lucide-react";
+
+import { useEffect, useState } from "react";
 
 import { useCart } from "../../context/cart-context";
 
@@ -14,6 +17,16 @@ export default function CartDrawer() {
     increaseQuantity,
     decreaseQuantity,
   } = useCart();
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <>
@@ -58,6 +71,7 @@ export default function CartDrawer() {
                     <h3 className="font-bold text-black">{item.title}</h3>
 
                     <p className="text-zinc-500 mt-2">{item.price}</p>
+
                     <div className="flex items-center gap-4 mt-4">
                       <button
                         onClick={() => decreaseQuantity(item.id)}
@@ -77,6 +91,7 @@ export default function CartDrawer() {
                         +
                       </button>
                     </div>
+
                     <button
                       onClick={() => removeFromCart(item.id)}
                       className="mt-3 text-sm text-red-500 hover:text-red-700 transition"
@@ -89,6 +104,8 @@ export default function CartDrawer() {
             </div>
           )}
         </div>
+
+        {/* SUBTOTAL */}
         <div className="border-t px-6 py-5 flex justify-between items-center">
           <p className="text-zinc-500">Subtotal</p>
 

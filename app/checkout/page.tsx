@@ -64,6 +64,7 @@ export default function CheckoutPage() {
 
     if (!res) {
       alert("Razorpay failed to load");
+
       return;
     }
 
@@ -95,7 +96,7 @@ export default function CheckoutPage() {
       order_id: order.id,
 
       handler: async function (response: any) {
-        await fetch("/api/save-order", {
+        const saveRes = await fetch("/api/save-order", {
           method: "POST",
 
           headers: {
@@ -107,6 +108,16 @@ export default function CheckoutPage() {
 
             userEmail: "customer@void.com",
 
+            phone,
+
+            address,
+
+            city,
+
+            state,
+
+            pincode,
+
             products: cart,
 
             amount: totalAmount,
@@ -116,6 +127,14 @@ export default function CheckoutPage() {
             status: "PAID",
           }),
         });
+
+        if (!saveRes.ok) {
+          alert("Failed to save order");
+
+          return;
+        }
+
+        localStorage.removeItem("cart");
 
         window.location.href = "/success";
       },

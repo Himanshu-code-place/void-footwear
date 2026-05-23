@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+
 import { motion } from "framer-motion";
 
 import { useEffect, useState } from "react";
@@ -34,16 +35,16 @@ export default function NewArrivals() {
   }, []);
 
   return (
-    <section className="bg-zinc-50 py-40 overflow-hidden">
+    <section className="bg-zinc-50 py-32 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         {/* HEADER */}
-        <div className="flex justify-between items-end mb-24">
+        <div className="flex justify-between items-end mb-20">
           <div>
             <p className="uppercase tracking-[0.4em] text-xs text-zinc-500">
               Latest Drop
             </p>
 
-            <h2 className="text-6xl md:text-8xl font-black leading-[0.9] tracking-[-0.06em] mt-8 text-black">
+            <h2 className="text-5xl md:text-7xl font-black leading-[0.9] tracking-[-0.06em] mt-6 text-black">
               NEW
               <br />
               ARRIVALS
@@ -56,23 +57,31 @@ export default function NewArrivals() {
         </div>
 
         {/* PRODUCTS */}
-        <div className="grid lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {products.map((product, index) => (
             <Link key={product.id} href={`/product/${product.id}`}>
               <motion.div
-                initial={{ opacity: 0, y: 80 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 2,
-                  delay: index * 0.2,
+                initial={{
+                  opacity: 0,
+                  y: 50,
                 }}
-                viewport={{ once: true }}
-                className="group "
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.1,
+                }}
+                viewport={{
+                  once: true,
+                }}
+                className="group"
               >
-                {/* IMAGE */}
-                <div className="relative overflow-hidden rounded-[40px] bg-white shadow-sm group-hover:shadow-2xl group-hover:-translate-y-3 transition duration-500">
+                {/* IMAGE CARD */}
+                <div className="relative overflow-hidden rounded-[30px] bg-white shadow-sm hover:shadow-2xl transition duration-500">
                   {/* LABEL */}
-                  <div className="absolute top-6 left-6 z-20 bg-black text-white px-4 py-2 rounded-full text-xs tracking-[0.2em] uppercase">
+                  <div className="absolute top-4 left-4 z-20 bg-black text-white px-3 py-1 rounded-full text-[10px] tracking-[0.2em] uppercase">
                     New
                   </div>
 
@@ -80,40 +89,41 @@ export default function NewArrivals() {
                   <img
                     src={product.image}
                     alt={product.title}
-                    className="w-full h-[650px] object-cover group-hover:scale-110 transition duration-700"
+                    className="w-full h-[320px] object-cover group-hover:scale-105 transition duration-700"
                   />
 
                   {/* OVERLAY */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-500"></div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-500" />
 
                   {/* QUICK ADD */}
                   <button
-                    onClick={() =>
+                    onClick={(e) => {
+                      e.preventDefault();
+
                       addToCart({
                         id: index,
                         title: product.title,
                         price: `₹${product.price}`,
                         image: product.image,
-                      })
-                    }
-                    className="absolute bottom-6 left-1/2 -translate-x-1/2 translate-y-20 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 bg-white text-black px-8 py-4 rounded-full transition duration-500 font-semibold hover:bg-zinc-200"
+                      });
+                    }}
+                    className="absolute bottom-4 left-1/2 -translate-x-1/2 translate-y-16 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 bg-white text-black px-6 py-3 rounded-full transition duration-500 font-semibold hover:bg-zinc-200"
                   >
                     QUICK ADD
                   </button>
                 </div>
 
                 {/* CONTENT */}
-                {/* CONTENT */}
-                <div className="bg-white rounded-[30px] mt-4 px-6 py-6 shadow-sm border border-zinc-100 transition duration-500 group-hover:shadow-xl">
-                  <p className="uppercase tracking-[0.3em] text-[11px] text-zinc-400">
+                <div className="bg-white rounded-[24px] mt-4 px-5 py-5 shadow-sm border border-zinc-100 transition duration-500 group-hover:shadow-xl">
+                  <p className="uppercase tracking-[0.3em] text-[10px] text-zinc-400">
                     {product.category}
                   </p>
 
-                  <h3 className="text-3xl font-black text-black tracking-[-0.05em] mt-3 leading-none">
+                  <h3 className="text-2xl font-black text-black tracking-[-0.05em] mt-2">
                     {product.title}
                   </h3>
 
-                  <p className="text-black font-semibold mt-4 text-lg">
+                  <p className="text-black font-semibold mt-3 text-lg">
                     ₹{product.price}
                   </p>
                 </div>

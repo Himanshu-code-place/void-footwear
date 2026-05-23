@@ -32,7 +32,12 @@ export default function SuccessPage() {
           </Link>
 
           <button className="border border-white/10 text-white px-8 py-4 rounded-full hover:bg-white/5 transition">
-            View Orders
+            <Link
+              href="/admin/orders"
+              className="h-14 px-8 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition flex items-center justify-center text-white font-medium"
+            >
+              View Orders
+            </Link>
           </button>
         </div>
       </div>
