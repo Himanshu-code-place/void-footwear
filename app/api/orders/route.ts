@@ -1,28 +1,3 @@
-// import { NextResponse } from "next/server";
-
-// import { prisma } from "@/src/lib/prisma";
-
-// export async function GET() {
-//   try {
-//     const orders = await prisma.order.findMany({
-//       orderBy: {
-//         createdAt: "desc",
-//       },
-//     });
-
-//     return NextResponse.json(orders);
-//   } catch (error) {
-//     return NextResponse.json(
-//       {
-//         error: "Failed to fetch orders",
-//       },
-//       {
-//         status: 500,
-//       },
-//     );
-//   }
-// }
-
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/src/lib/prisma";
@@ -33,7 +8,7 @@ import { authOptions } from "../auth/[...nextauth]/route";
 
 export async function GET() {
   try {
-    const session = await getServerSession(authOptions);
+    const session: any = await getServerSession(authOptions);
     console.log(session);
 
     if (!session?.user?.email) {
