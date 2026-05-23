@@ -1,74 +1,37 @@
-// import { NextResponse } from "next/server";
-
-// import { prisma } from "@/src/lib/prisma";
-
-// import { getServerSession } from "next-auth";
-
-// import { authOptions } from "../auth/[...nextauth]/route";
-
-// export async function GET() {
-//   try {
-//     const session = await getServerSession(authOptions) as { user?: { email?: string } } | null;
-//     console.log(session);
-
-//     if (!session?.user?.email) {
-//       return NextResponse.json(
-//         {
-//           error: "Unauthorized",
-//         },
-//         {
-//           status: 401,
-//         },
-//       );
-//     }
-
-//     const orders = await prisma.order.findMany({
-//       where: {
-//         userEmail: session.user.email,
-//       },
-
-//       orderBy: {
-//         createdAt: "desc",
-//       },
-//     });
-
-//     return NextResponse.json(orders);
-//   } catch (error) {
-//     return NextResponse.json(
-//       {
-//         error: "Failed to fetch orders",
-//       },
-//       {
-//         status: 500,
-//       },
-//     );
-//   }
-// }
-
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "@/src/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 
-export async function GET() {
-  try {
-    const session = await getServerSession(authOptions);
+interface SessionUser {
+  email?: string;
+  name?: string;
+  role?: string;
+}
 
-    // Proper type guard
-    if (!session?.user?.email) {
-      return NextResponse.json(
-        {
-          error: "Unauthorized",
-        },
-        {
-          status: 401,
-        },
-      );
+interface CustomSession {
+  user?: SessionUser;
+  expires?: string;
+}
+
+export async function GET(req: NextRequest) {
+  try {
+    const session = (await getServerSession(
+      authOptions,
+    )) as CustomSession | null;
+
+    console.log("Session data:", session);
+
+    // Type-safe email check
+    const userEmail = session?.user?.email;
+
+    if (!userEmail) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const orders = await prisma.order.findMany({
       where: {
-        userEmail: session.user.email,
+        userEmail: userEmail,
       },
       orderBy: {
         createdAt: "desc",
@@ -79,12 +42,8 @@ export async function GET() {
   } catch (error) {
     console.error("Orders fetch error:", error);
     return NextResponse.json(
-      {
-        error: "Failed to fetch orders",
-      },
-      {
-        status: 500,
-      },
+      { error: "Failed to fetch orders" },
+      { status: 500 },
     );
   }
 }
