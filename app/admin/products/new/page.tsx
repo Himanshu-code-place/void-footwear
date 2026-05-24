@@ -216,7 +216,7 @@ export default function NewProductPage() {
                     title: e.target.value,
                   })
                 }
-                placeholder="VOID Runner X"
+                placeholder="VELTRIX Runner X"
                 className="w-full h-16 rounded-2xl bg-[#f7f7f5] border border-zinc-200 px-6 text-lg outline-none focus:border-black transition"
               />
             </div>

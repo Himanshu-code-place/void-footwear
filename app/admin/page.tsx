@@ -10,7 +10,7 @@ export default function AdminPage() {
             </p>
 
             <h1 className="text-7xl tracking-[-0.08em] font-black text-black mt-4 leading-none">
-              VOID Admin
+              VELTRIX Admin
             </h1>
           </div>
 
@@ -104,7 +104,7 @@ export default function AdminPage() {
               <div className="flex items-center justify-between border border-zinc-200 rounded-3xl px-6 py-5">
                 <div>
                   <h3 className="font-semibold text-lg text-black">
-                    VOID Street Low
+                    VELTRIX Street Low
                   </h3>
 
                   <p className="text-zinc-500 text-sm mt-1">Order #1021</p>

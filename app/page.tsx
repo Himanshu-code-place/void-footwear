@@ -12,7 +12,6 @@ import CartDrawer from "../src/components/cart/cart-drawer";
 export default function Home() {
   return (
     <main>
-
       <Topbar />
 
       <Navbar />
@@ -22,12 +21,13 @@ export default function Home() {
       <BrandStrip />
 
       <NewArrivals />
+
       <FeaturedCollections />
+
       <EditorialShowcase />
-      
+
       <Footer />
       <CartDrawer />
-
     </main>
   );
 }

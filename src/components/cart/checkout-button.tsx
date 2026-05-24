@@ -80,7 +80,7 @@ export default function CheckoutButton() {
 
       currency: order.currency,
 
-      name: "VOID Footwear",
+      name: "VELTRIX Footwear",
 
       description: "Premium Sneaker Purchase",
 

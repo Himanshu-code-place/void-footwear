@@ -97,7 +97,7 @@ export default function Navbar() {
           <div className="flex items-center gap-14">
             {/* LOGO */}
             <h1 className="text-3xl font-black tracking-[0.3em] text-white">
-              VOID
+              VELTRIX
             </h1>
 
             {/* DESKTOP NAV */}
@@ -168,54 +168,61 @@ export default function Navbar() {
 
       {/* MOBILE MENU */}
       <div
-        className={`fixed inset-0 bg-black z-50 transform transition-transform duration-500 ${
-          menuOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed inset-0 bg-black/95 backdrop-blur-2xl z-50 transform transition-all duration-500 ${
+          menuOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
         }`}
       >
         {/* TOP */}
-        <div className="flex justify-between items-center px-6 h-20 border-b border-zinc-800">
-          <h1 className="text-3xl font-black tracking-widest text-white">
-            VOID
+        <div className="flex justify-between items-center px-6 h-24 border-b border-white/10">
+          <h1 className="text-3xl font-black tracking-[0.3em] text-white">
+            VELTRIX
           </h1>
 
-          <button onClick={() => setMenuOpen(false)}>
-            <X size={30} color="white" />
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="text-white hover:rotate-90 transition duration-300"
+          >
+            <X size={36} />
           </button>
         </div>
 
-        {/* LINKS */}
-        <div className="flex flex-col px-6 py-12 gap-10 text-3xl font-black text-white">
-          {["MEN", "WOMEN", "NEW ARRIVALS", "COLLECTIONS"].map((item) => (
-            <a
-              key={item}
-              href="#"
-              onClick={() => setMenuOpen(false)}
-              className="hover:text-zinc-500 transition"
-            >
-              {item}
-            </a>
-          ))}
+        {/* MENU CONTENT */}
+        <div className="flex flex-col justify-between h-[calc(100vh-96px)] px-6 py-10">
+          {/* LINKS */}
+          <div className="flex flex-col gap-8">
+            {["MEN", "WOMEN", "NEW ARRIVALS", "COLLECTIONS"].map((item) => (
+              <a
+                key={item}
+                href="#"
+                onClick={() => setMenuOpen(false)}
+                className="text-[42px] leading-none font-black tracking-[-0.05em] text-white hover:text-zinc-500 hover:translate-x-2 hover:tracking-[0.2em] transition-all duration-300"
+              >
+                {item}
+              </a>
+            ))}
+          </div>
 
-          {/* MOBILE LOGIN */}
-          {!session && (
-            <a
-              href="/login"
-              className="bg-white text-black py-4 rounded-full text-lg text-center font-bold"
-            >
-              LOGIN
-            </a>
-          )}
+          {/* BOTTOM */}
+          <div className="space-y-4 pb-6">
+            {!session && (
+              <a
+                href="/login"
+                className="w-full h-14 rounded-full bg-white text-black flex items-center justify-center font-black text-lg hover:bg-zinc-200 transition"
+              >
+                LOGIN
+              </a>
+            )}
 
-          {/* OPEN CART */}
-          <button
-            onClick={() => {
-              setMenuOpen(false);
-              setCartOpen(true);
-            }}
-            className="bg-white text-black py-4 rounded-full text-lg font-bold"
-          >
-            OPEN CART ({mounted ? cart.length : 0})
-          </button>
+            <button
+              onClick={() => {
+                setMenuOpen(false);
+                setCartOpen(true);
+              }}
+              className="w-full h-14 rounded-full border border-white/10 bg-white/5 text-white font-black text-lg hover:bg-white hover:text-black transition-all duration-300"
+            >
+              OPEN CART ({mounted ? cart.length : 0})
+            </button>
+          </div>
         </div>
       </div>
     </header>

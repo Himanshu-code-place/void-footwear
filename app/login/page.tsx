@@ -55,7 +55,7 @@ export default function LoginPage() {
 
         <div className="relative z-10 text-white">
           <p className="uppercase tracking-[0.4em] text-xs text-zinc-300">
-            VOID® FOOTWEAR
+            VELTRIX® FOOTWEAR
           </p>
 
           <h1 className="text-8xl xl:text-[9rem] font-black leading-[0.85] tracking-[-0.08em] mt-8">
@@ -113,7 +113,7 @@ export default function LoginPage() {
 
           {/* SIGNUP */}
           <p className="text-center text-zinc-500 mt-10">
-            New to VOID?{" "}
+            New to VELTRIX?{" "}
             <a
               href="/signup"
               className="text-black font-semibold hover:opacity-60 transition"

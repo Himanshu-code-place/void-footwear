@@ -89,7 +89,7 @@ export default function CheckoutPage() {
 
       currency: order.currency,
 
-      name: "VOID Footwear",
+      name: "VELTRIX Footwear",
 
       description: "Premium Sneaker Purchase",
 
@@ -106,7 +106,7 @@ export default function CheckoutPage() {
           body: JSON.stringify({
             customerName: "Customer",
 
-            userEmail: "customer@void.com",
+            userEmail: "customer@VELTRIX.com",
 
             phone,
 

@@ -18,8 +18,8 @@ export default function SuccessPage() {
 
         {/* SUBTEXT */}
         <p className="text-zinc-400 text-base md:text-lg leading-relaxed mt-5 max-w-2xl mx-auto">
-          Your payment was successful. Your premium VOID® sneakers are now being
-          prepared for shipment and delivery.
+          Your payment was successful. Your premium VELTRIX® sneakers are now
+          being prepared for shipment and delivery.
         </p>
 
         {/* TRACKER */}

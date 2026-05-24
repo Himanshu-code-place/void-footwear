@@ -3,7 +3,7 @@ export default function BrandStrip() {
     <section className="overflow-hidden border-y border-zinc-200 bg-black py-6">
       <div className="flex whitespace-nowrap animate-marquee gap-20">
         <h2 className="text-white text-3xl font-black tracking-[0.3em]">
-          VOID® PERFORMANCE
+          VELTRIX® PERFORMANCE
         </h2>
 
         <h2 className="text-white text-3xl font-black tracking-[0.3em]">
@@ -19,7 +19,7 @@ export default function BrandStrip() {
         </h2>
 
         <h2 className="text-white text-3xl font-black tracking-[0.3em]">
-          VOID® PERFORMANCE
+          VELTRIX® PERFORMANCE
         </h2>
       </div>
     </section>

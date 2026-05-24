@@ -7,7 +7,7 @@ export default function Footer() {
           {/* LEFT */}
           <div>
             <p className="uppercase tracking-[0.4em] text-xs text-zinc-500">
-              VOID® FOOTWEAR
+              VELTRIX® FOOTWEAR
             </p>
 
             <h2 className="text-5xl md:text-7xl font-black leading-[0.9] tracking-[-0.06em] mt-8">
@@ -74,7 +74,7 @@ export default function Footer() {
         {/* BOTTOM */}
         <div className="flex flex-col md:flex-row justify-between items-center pt-10 gap-6">
           <p className="text-zinc-500 text-sm">
-            © 2026 VOID® — All Rights Reserved
+            © 2026 VELTRIX® — All Rights Reserved
           </p>
 
           <div className="flex gap-8 text-sm text-zinc-500">

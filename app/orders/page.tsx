@@ -57,7 +57,7 @@ export default function OrdersPage() {
         {/* HEADER */}
         <div className="mb-16">
           <p className="uppercase tracking-[0.4em] text-xs text-zinc-500">
-            VOID® Orders
+            VELTRIX® Orders
           </p>
 
           <h1 className="text-6xl md:text-7xl font-black tracking-[-0.06em] mt-6">
