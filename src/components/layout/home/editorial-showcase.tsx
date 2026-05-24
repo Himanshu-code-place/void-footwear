@@ -64,8 +64,8 @@
 
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 const features = [
   {
@@ -178,38 +178,67 @@ export default function EditorialShowcase() {
 
           {/* FEATURES */}
           <div className="grid md:grid-cols-3 gap-8">
-            {features.map((item, index) => (
-              <div
-                key={index}
-                className="group border border-white/10 rounded-[35px] overflow-hidden bg-[#0a0a0a] hover:bg-white transition duration-500"
-              >
-                {/* IMAGE */}
-                <div className="p-8">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-[260px] object-cover rounded-[25px]"
-                  />
-                </div>
+            {features.map((item, index) => {
+              const ref = useRef(null);
 
-                {/* CONTENT */}
-                <div className="px-8 pb-10 transition duration-500">
-                  <p className="text-yellow-400 font-bold text-sm tracking-[0.3em] mb-5 group-hover:text-black">
-                    {item.number}
-                  </p>
+              const isInView = useInView(ref, {
+                amount: 0.6,
+                once: false,
+              });
 
-                  <h3 className="text-3xl font-black leading-none whitespace-pre-line group-hover:text-black transition duration-500">
-                    {item.title}
-                  </h3>
+              return (
+                <motion.div
+                  ref={ref}
+                  key={index}
+                  className={`group border rounded-[35px] overflow-hidden transition-all duration-700
+      ${
+        isInView
+          ? "bg-white text-black border-white scale-[1.02]"
+          : "bg-[#0a0a0a] text-white border-white/10"
+      }`}
+                >
+                  {/* IMAGE */}
+                  <div className="p-8 overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className={`w-full h-[260px] object-cover rounded-[25px] transition-all duration-700 ${
+                        isInView ? "scale-105" : "scale-100"
+                      }`}
+                    />
+                  </div>
 
-                  <div className="w-14 h-[3px] bg-yellow-400 mt-6 mb-6 group-hover:bg-black transition duration-500"></div>
+                  {/* CONTENT */}
+                  <div className="px-8 pb-10 transition duration-500">
+                    <p
+                      className={`font-bold text-sm tracking-[0.3em] mb-5 transition-all duration-500 ${
+                        isInView ? "text-black" : "text-yellow-400"
+                      }`}
+                    >
+                      {item.number}
+                    </p>
 
-                  <p className="text-zinc-400 leading-relaxed text-lg group-hover:text-zinc-700 transition duration-500">
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
+                    <h3 className="text-3xl font-black leading-none whitespace-pre-line transition-all duration-500">
+                      {item.title}
+                    </h3>
+
+                    <div
+                      className={`w-14 h-[3px] mt-6 mb-6 transition-all duration-500 ${
+                        isInView ? "bg-black" : "bg-yellow-400"
+                      }`}
+                    ></div>
+
+                    <p
+                      className={`leading-relaxed text-lg transition-all duration-500 ${
+                        isInView ? "text-zinc-700" : "text-zinc-400"
+                      }`}
+                    >
+                      {item.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>

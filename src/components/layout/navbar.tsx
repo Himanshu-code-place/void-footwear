@@ -32,7 +32,7 @@ export default function Navbar() {
         </button>
 
         {open && (
-          <div className="absolute right-0 top-[60px] w-52 bg-black/70 backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+          <div className="absolute right-0 top-[60px] w-52 bg-[#111111] backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
             <button className="w-full text-left px-5 py-4 text-sm text-white hover:bg-white/5 transition">
               Account
             </button>
@@ -99,8 +99,8 @@ export default function Navbar() {
     <header
       className={`w-full fixed top-0 left-0 z-50 border-b border-white/10 transition-all duration-500 ${
         scrolled
-          ? "backdrop-blur-2xl bg-black/70 py-1 shadow-2xl"
-          : "backdrop-blur-xl bg-black/40 py-3"
+          ? "backdrop-blur-2xl bg-[#111111] py-1 shadow-2xl"
+          : "backdrop-blur-xl bg-[#111111] py-3"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 lg:px-6">
@@ -179,9 +179,8 @@ export default function Navbar() {
       </div>
 
       {/* MOBILE MENU */}
-      {/* MOBILE MENU */}
       <div
-        className={`fixed inset-0 z-[9999] bg-black transition-all duration-500 overflow-y-auto ${
+        className={`fixed fixed inset-0 bg-black z-[999] transition-all duration-500 ${
           menuOpen
             ? "translate-x-0 opacity-100"
             : "translate-x-full opacity-0 pointer-events-none"
@@ -195,34 +194,34 @@ export default function Navbar() {
 
           <button
             onClick={() => setMenuOpen(false)}
-            className="text-white hover:rotate-90 transition duration-300"
+            className="text-white relative z-[1000] hover:rotate-90 transition duration-300"
           >
-            <X size={36} />
+            <X size={38} />
           </button>
         </div>
 
-        {/* MENU CONTENT */}
-        <div className="min-h-[calc(100vh-96px)] flex flex-col justify-between px-6 py-10">
-          {/* LINKS */}
-          <div className="flex flex-col gap-8 pt-6">
+        {/* CONTENT */}
+        <div className="relative z-[10000] flex flex-col justify-start h-full px-8 py-10 bg-black">
+          {/* MENU LINKS */}
+          <div className="flex flex-col relative z-[1000] gap-8 mt-6 relative z-[10001]">
             {["MEN", "WOMEN", "NEW ARRIVALS", "COLLECTIONS"].map((item) => (
               <a
                 key={item}
                 href="#"
                 onClick={() => setMenuOpen(false)}
-                className="text-[42px] sm:text-[54px] leading-none font-black tracking-[-0.06em] text-white hover:text-zinc-500 transition-all duration-300"
+                className="block text-[52px] leading-[0.95] font-black tracking-[-0.06em] text-white"
               >
                 {item}
               </a>
             ))}
           </div>
 
-          {/* BOTTOM */}
-          <div className="space-y-4 pt-16 pb-8">
+          {/* BOTTOM BUTTONS */}
+          <div className="space-y-4 pb-10">
             {!session && (
               <a
                 href="/login"
-                className="w-full h-14 rounded-full bg-white text-black flex items-center justify-center font-black text-lg hover:bg-zinc-200 transition"
+                className="w-full h-16 rounded-full bg-white text-black flex items-center justify-center font-black text-lg hover:bg-zinc-200 transition-all duration-300"
               >
                 LOGIN
               </a>
@@ -233,7 +232,7 @@ export default function Navbar() {
                 setMenuOpen(false);
                 setCartOpen(true);
               }}
-              className="w-full h-14 rounded-full border border-white/10 bg-white/5 text-white font-black text-lg hover:bg-white hover:text-black transition-all duration-300"
+              className="w-full h-16 rounded-full border border-white/10 bg-white/5 text-white font-black text-lg hover:bg-white hover:text-black transition-all duration-300"
             >
               OPEN CART ({mounted ? cart.length : 0})
             </button>
