@@ -59,6 +59,18 @@ export default function Navbar() {
 
   const [menuOpen, setMenuOpen] = useState(false);
 
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [menuOpen]);
+
   const [scrolled, setScrolled] = useState(false);
 
   const { cart, setCartOpen } = useCart();
@@ -167,9 +179,12 @@ export default function Navbar() {
       </div>
 
       {/* MOBILE MENU */}
+      {/* MOBILE MENU */}
       <div
-        className={`fixed inset-0 bg-black/95 backdrop-blur-2xl z-50 transform transition-all duration-500 ${
-          menuOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+        className={`fixed inset-0 z-[9999] bg-black transition-all duration-500 overflow-y-auto ${
+          menuOpen
+            ? "translate-x-0 opacity-100"
+            : "translate-x-full opacity-0 pointer-events-none"
         }`}
       >
         {/* TOP */}
@@ -187,15 +202,15 @@ export default function Navbar() {
         </div>
 
         {/* MENU CONTENT */}
-        <div className="flex flex-col justify-between h-[calc(100vh-96px)] px-6 py-10">
+        <div className="min-h-[calc(100vh-96px)] flex flex-col justify-between px-6 py-10">
           {/* LINKS */}
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-8 pt-6">
             {["MEN", "WOMEN", "NEW ARRIVALS", "COLLECTIONS"].map((item) => (
               <a
                 key={item}
                 href="#"
                 onClick={() => setMenuOpen(false)}
-                className="text-[42px] leading-none font-black tracking-[-0.05em] text-white hover:text-zinc-500 hover:translate-x-2 hover:tracking-[0.2em] transition-all duration-300"
+                className="text-[42px] sm:text-[54px] leading-none font-black tracking-[-0.06em] text-white hover:text-zinc-500 transition-all duration-300"
               >
                 {item}
               </a>
@@ -203,7 +218,7 @@ export default function Navbar() {
           </div>
 
           {/* BOTTOM */}
-          <div className="space-y-4 pb-6">
+          <div className="space-y-4 pt-16 pb-8">
             {!session && (
               <a
                 href="/login"
