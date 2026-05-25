@@ -24,10 +24,11 @@ export default function AddToCartButton({
   const handleAddToCart = () => {
 
     addToCart({
-      id: Number(product.id),
-      title: product.title,
-      price: `₹${product.price}`,
+      id: product.id,
+      name: product.title,
+      price: product.price,
       image: product.image,
+      quantity: 1,
     });
 
     setAdded(true);
