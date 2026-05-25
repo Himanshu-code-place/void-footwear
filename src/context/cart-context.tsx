@@ -9,10 +9,10 @@ import {
 } from "react";
 
 type CartItem = {
-  id: number;
-  title: string;
-  price: string;
+  id: string;
+  name: string;
   image: string;
+  price: number;
 
   quantity: number;
 };
