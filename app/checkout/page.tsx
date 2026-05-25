@@ -112,68 +112,47 @@ export default function CheckoutPage() {
     const order = await orderRes.json();
 
     const options = {
-      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+  key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
 
-      amount: order.amount,
+  amount: totalAmount * 100,
 
-      currency: order.currency,
+  currency: "INR",
 
-      name: "VELTRIX Footwear",
+  name: "VELTRIX Footwear",
 
-      description: "Premium Sneaker Purchase",
+  description: "Premium Sneakers",
 
-      order_id: order.id,
+  image: "/logo.png",
 
-      handler: async function (response: any) {
-        const saveRes = await fetch("/api/save-order", {
-          method: "POST",
+  handler: function () {
+    // success
+  },
 
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-          body: JSON.stringify({
-            customerName: "Customer",
-
-            userEmail: "customer@VELTRIX.com",
-
-            phone,
-
-            address,
-
-            city,
-
-            state,
-
-            pincode,
-
-            products: cart,
-
-            amount: totalAmount,
-
-            paymentId: response.razorpay_payment_id,
-
-            status: "PAID",
-          }),
-        });
-
-        if (!saveRes.ok) {
-          alert("Failed to save order");
-
-          return;
-        }
-
-        localStorage.removeItem("cart");
-
-        setTimeout(() => {
-          window.location.href = "/success";
-        }, 500);
+  config: {
+    display: {
+      blocks: {
+        upi: {
+          name: "Pay using UPI",
+          instruments: [
+            {
+              method: "upi",
+            },
+          ],
+        },
       },
 
-      theme: {
-        color: "#000000",
+      sequence: ["block.upi"],
+
+      preferences: {
+        show_default_blocks: true,
       },
-    };
+    },
+  },
+
+  theme: {
+    color: "#000000",
+  },
+};
 
     const razorpay = new window.Razorpay(options);
 
