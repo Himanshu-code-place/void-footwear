@@ -2,16 +2,19 @@
 
 import { toast } from "sonner";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import { useRouter } from "next/navigation";
 
 import Image from "next/image";
 
-import { Lock, MapPin, Phone, Building2, Map } from "lucide-react";
+import { Lock, MapPin, Phone, Building2, Map, ChevronDown } from "lucide-react";
 
 import { useCart } from "@/src/context/cart-context";
 
 export default function CheckoutPage() {
   const { cart } = useCart();
+  const router = useRouter();
 
   const totalAmount = cart.reduce(
     (acc, item) =>
@@ -25,23 +28,39 @@ export default function CheckoutPage() {
     }
   }
 
-  const loadRazorpay = () => {
-    return new Promise((resolve) => {
-      const script = document.createElement("script");
+  // const loadRazorpay = () => {
+  //   return new Promise((resolve) => {
+  //     const script = document.createElement("script");
 
-      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+  //     script.src = "https://checkout.razorpay.com/v1/checkout.js";
 
-      script.onload = () => {
-        resolve(true);
-      };
+  //     script.onload = () => {
+  //       resolve(true);
+  //     };
 
-      script.onerror = () => {
-        resolve(false);
-      };
+  //     script.onerror = () => {
+  //       resolve(false);
+  //     };
 
-      document.body.appendChild(script);
-    });
-  };
+  //     document.body.appendChild(script);
+  //   });
+  // };
+
+  useEffect(() => {
+    const script = document.createElement("script");
+
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+
+    script.async = true;
+
+    document.body.appendChild(script);
+  }, []);
+
+  useEffect(() => {
+    if (cart.length === 0) {
+      router.push("/shop");
+    }
+  }, [cart, router]);
 
   const [phone, setPhone] = useState("");
 
@@ -53,20 +72,32 @@ export default function CheckoutPage() {
 
   const [pincode, setPincode] = useState("");
 
-  const handlePayment = async () => {
-    const res = await loadRazorpay();
+  const [loading, setLoading] = useState(false);
 
-    if (!phone || !address || !city || !state || !pincode) {
+  const handlePayment = async () => {
+    setLoading(true);
+    // const res = await loadRazorpay();
+
+    if (
+      !phone ||
+      phone.length !== 10 ||
+      !address ||
+      !city ||
+      !state ||
+      !pincode
+    ) {
       toast.error("Please fill all shipping details");
 
-      return;
-    }
-
-    if (!res) {
-      alert("Razorpay failed to load");
+      setLoading(false);
 
       return;
     }
+
+    // if (!res) {
+    //   alert("Razorpay failed to load");
+
+    //   return;
+    // }
 
     const orderRes = await fetch("/api/create-order", {
       method: "POST",
@@ -136,7 +167,9 @@ export default function CheckoutPage() {
 
         localStorage.removeItem("cart");
 
-        window.location.href = "/success";
+        setTimeout(() => {
+          window.location.href = "/success";
+        }, 500);
       },
 
       theme: {
@@ -186,17 +219,43 @@ export default function CheckoutPage() {
                 Phone Number
               </label>
 
-              <div className="flex items-center gap-3 bg-white border border-black/10 rounded-2xl h-14 px-5 shadow-sm focus-within:border-black transition">
-                <Phone size={18} className="text-zinc-400" />
+              <div className="flex items-center bg-white border border-black/10 rounded-2xl h-14 px-4 shadow-sm focus-within:border-black transition">
+                {/* FLAG */}
+                <div className="flex items-center gap-2 pr-4 border-r border-black/10">
+                  <span className="text-lg">🇮🇳</span>
 
-                <input
-                  type="text"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="Enter your phone number"
-                  className="w-full bg-transparent outline-none text-[14px] placeholder:text-zinc-400"
-                />
+                  <span className="text-sm font-medium text-black">+91</span>
+
+                  <ChevronDown size={14} className="text-zinc-400" />
+                </div>
+
+                {/* INPUT */}
+                <div className="flex items-center gap-3 flex-1 pl-4">
+                  <Phone size={18} className="text-zinc-400" />
+
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/\D/g, "");
+
+                      if (value.length <= 10) {
+                        setPhone(value);
+                      }
+                    }}
+                    placeholder="9876543210"
+                    maxLength={10}
+                    className="w-full bg-transparent outline-none text-[14px] tracking-[0.08em] placeholder:text-zinc-400"
+                  />
+                </div>
               </div>
+
+              {/* VALIDATION TEXT */}
+              {phone.length > 0 && phone.length < 10 && (
+                <p className="text-red-500 text-xs mt-2">
+                  Enter valid 10-digit mobile number
+                </p>
+              )}
             </div>
 
             {/* ADDRESS */}
@@ -334,9 +393,10 @@ export default function CheckoutPage() {
           {/* BUTTON */}
           <button
             onClick={handlePayment}
+            disabled={loading}
             className="w-full h-14 mt-8 rounded-2xl bg-gradient-to-r from-black to-zinc-800 text-white text-[15px] font-semibold tracking-[0.12em] uppercase hover:scale-[1.01] transition-all duration-300 shadow-xl"
           >
-            Complete Payment →
+            {loading ? "PROCESSING PAYMENT..." : "COMPLETE PAYMENT →"}
           </button>
         </div>
       </div>

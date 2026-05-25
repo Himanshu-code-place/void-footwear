@@ -341,14 +341,14 @@ export default function Navbar() {
 
   return (
     <header
-      className={`w-full fixed top-0 left-0 z-50 border-b border-white/10 transition-all duration-500 ${
+      className={`w-full fixed top-0 left-0 z-50 border-b border-transparent transition-all duration-500 ${
         scrolled
           ? "backdrop-blur-2xl bg-[#111111]/95 py-1 shadow-2xl"
           : "backdrop-blur-xl bg-[#111111]/90 py-3"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 lg:px-6">
-        <div className="flex items-center justify-between px-8 py-6 border-b border-white/10">
+        <div className="flex items-center justify-between px-8 py-6 border-b border-transparent">
           {/* LEFT */}
           <div className="flex items-center gap-14">
             {/* LOGO */}
@@ -447,7 +447,7 @@ export default function Navbar() {
     ${menuOpen ? "translate-x-0" : "translate-x-full"}`}
         >
           {/* TOP */}
-          <div className="flex justify-between items-center px-6 h-24 border-b border-white/10">
+          <div className="flex justify-between items-center px-6 h-24 border-b border-trasparent">
             <h1 className="text-3xl font-black tracking-[0.3em] text-white">
               VELTRIX
             </h1>

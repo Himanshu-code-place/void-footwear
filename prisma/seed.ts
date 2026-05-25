@@ -8,10 +8,17 @@ async function main() {
       {
         title: "VELTRIX Runner X",
         description: "Premium running sneakers.",
-        price: 999,
+        price: 2797,
         image:
           "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop",
         category: "Running",
+        gallery: [
+          "/products/shoe1.jpeg",
+          "/products/shoe2.jpeg",
+          "/products/shoe3.jpeg",
+        ],
+
+        video: "/products/demo.mp4",
       },
 
       {
