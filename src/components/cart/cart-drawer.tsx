@@ -74,7 +74,7 @@ export default function CartDrawer() {
 
                     <div className="flex items-center gap-4 mt-4">
                       <button
-                        onClick={() => decreaseQuantity(Number(item.id))}
+                        onClick={() => decreaseQuantity(item.id)}
                         className="w-8 h-8 rounded-full border border-zinc-300 text-black hover:bg-black hover:text-white transition"
                       >
                         -
@@ -85,7 +85,7 @@ export default function CartDrawer() {
                       </span>
 
                       <button
-                        onClick={() => increaseQuantity(Number(item.id))}
+                        onClick={() => increaseQuantity(item.id)}
                         className="w-8 h-8 rounded-full border border-zinc-300 text-black hover:bg-black hover:text-white transition"
                       >
                         +
@@ -93,7 +93,7 @@ export default function CartDrawer() {
                     </div>
 
                     <button
-                      onClick={() => removeFromCart(Number(item.id))}
+                      onClick={() => removeFromCart(item.id)}
                       className="mt-3 text-sm text-red-500 hover:text-red-700 transition"
                     >
                       Remove
@@ -114,7 +114,7 @@ export default function CartDrawer() {
             {cart.reduce(
               (total, item) =>
                 total +
-                Number(item.price.replace(/[^0-9]/g, "")) * item.quantity,
+                Number(item.price) * item.quantity,
               0,
             )}
           </p>

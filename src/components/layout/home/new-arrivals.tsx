@@ -100,11 +100,14 @@ export default function NewArrivals() {
                     onClick={(e) => {
                       e.preventDefault();
 
+                      const [quantity, setQuantity] = useState(1);
+
                       addToCart({
-                        id: index,
-                        title: product.title,
-                        price: `₹${product.price}`,
+                        id: String(index),
+                        name: product.title,
+                        price: product.price,
                         image: product.image,
+                        quantity: quantity, 
                       });
                     }}
                     className="

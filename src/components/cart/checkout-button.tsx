@@ -28,7 +28,7 @@ export default function CheckoutButton() {
 
   const totalAmount = cart.reduce(
     (acc, item) =>
-      acc + Number(item.price.replace(/[^0-9]/g, "")) * item.quantity,
+      acc + Number(item.price) * item.quantity,
     0,
   );
 
@@ -126,7 +126,7 @@ export default function CheckoutButton() {
             userEmail: session?.user?.email || "guest@void.com",
 
             products: cart.map((item) => ({
-              title: item.title,
+              title: item.name,
               price: item.price,
               quantity: item.quantity,
               image: item.image,
