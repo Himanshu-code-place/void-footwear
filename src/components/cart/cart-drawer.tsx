@@ -63,12 +63,12 @@ export default function CartDrawer() {
                 <div key={index} className="flex gap-4">
                   <img
                     src={item.image}
-                    alt={item.title}
+                    alt={item.name}
                     className="w-24 h-24 object-cover rounded-2xl"
                   />
 
                   <div className="flex-1">
-                    <h3 className="font-bold text-black">{item.title}</h3>
+                    <h3 className="font-bold text-black">{item.name}</h3>
 
                     <p className="text-zinc-500 mt-2">{item.price}</p>
 
