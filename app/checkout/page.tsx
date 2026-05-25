@@ -11,6 +11,11 @@ import Image from "next/image";
 import { Lock, MapPin, Phone, Building2, Map, ChevronDown } from "lucide-react";
 
 import { useCart } from "@/src/context/cart-context";
+declare global {
+    interface Window {
+      Razorpay: any;
+    }
+  }
 
 export default function CheckoutPage() {
   const { cart } = useCart();
@@ -22,11 +27,7 @@ export default function CheckoutPage() {
     0,
   );
 
-  declare global {
-    interface Window {
-      Razorpay: any;
-    }
-  }
+  
 
   // const loadRazorpay = () => {
   //   return new Promise((resolve) => {
