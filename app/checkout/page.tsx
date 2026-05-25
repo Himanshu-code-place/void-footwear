@@ -12,22 +12,19 @@ import { Lock, MapPin, Phone, Building2, Map, ChevronDown } from "lucide-react";
 
 import { useCart } from "@/src/context/cart-context";
 declare global {
-    interface Window {
-      Razorpay: any;
-    }
+  interface Window {
+    Razorpay: any;
   }
+}
 
 export default function CheckoutPage() {
   const { cart } = useCart();
   const router = useRouter();
 
   const totalAmount = cart.reduce(
-    (acc, item) =>
-      acc + Number(item.price.replace(/[^0-9]/g, "")) * item.quantity,
+    (acc, item) => acc + item.price * item.quantity,
     0,
   );
-
-  
 
   // const loadRazorpay = () => {
   //   return new Promise((resolve) => {
