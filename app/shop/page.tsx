@@ -189,14 +189,14 @@ const products = [
     name: "Urban Flex",
     price: "₹2499",
     image:
-      "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Ym9vdHN8ZW58MHx8MHx8fDA%3D",
   },
   {
     id: "4",
     name: "Puma Classic",
     price: "₹2999",
     image:
-      "https://teakwoodleathers.com/cdn/shop/products/T_SH_1487_03_TM41_1_1080x.jpg?v=1750933739",
+      "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 

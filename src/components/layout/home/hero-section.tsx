@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const shoes = [
@@ -41,10 +42,6 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-10 items-center">
         {/* LEFT */}
         <div className="relative z-10 pt-28 lg:pt-0">
-          {/* <p className="uppercase tracking-[0.4em] text-xs text-zinc-500 mb-8">
-            VELTRIX® 2026 COLLECTION
-          </p> */}
-
           <h1 className="text-[4rem] md:text-[6rem] xl:text-[7rem] leading-[0.9] font-black text-black tracking-[-0.08em] transition-all duration-1000 ease-in-out">
             {shoes[current].title}
           </h1>
@@ -56,10 +53,14 @@ export default function HeroSection() {
             </p>
           </div>
 
+          {/* BUTTONS */}
           <div className="flex gap-5 mt-10">
-            <button className="bg-black text-white px-8 py-4 rounded-full text-sm tracking-wide hover:scale-105 hover:bg-zinc-800 transition duration-300">
+            <Link
+              href="/shop"
+              className="bg-black text-white px-8 py-4 rounded-full text-sm tracking-wide hover:scale-105 hover:bg-zinc-800 transition duration-300"
+            >
               SHOP COLLECTION
-            </button>
+            </Link>
 
             <button className="text-black text-sm tracking-wide hover:opacity-60 transition">
               EXPLORE →

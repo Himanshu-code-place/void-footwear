@@ -112,9 +112,7 @@ export default function CartDrawer() {
           <p className="text-2xl font-black text-black">
             ₹
             {cart.reduce(
-              (total, item) =>
-                total +
-                Number(item.price) * item.quantity,
+              (total, item) => total + Number(item.price) * item.quantity,
               0,
             )}
           </p>
@@ -124,7 +122,22 @@ export default function CartDrawer() {
         <div className="border-t p-6">
           <div className="mt-6">
             <Link href="/checkout">
-              <button className="w-full bg-black text-white py-5 rounded-full font-semibold hover:bg-zinc-800 transition duration-300">
+              <button
+                className="
+w-full
+bg-black
+hover:bg-lime-400
+hover:text-black
+transition-all
+duration-300
+text-white
+font-bold
+py-5
+rounded-full
+tracking-[0.15em]
+text-sm
+"
+              >
                 CHECKOUT
               </button>
             </Link>

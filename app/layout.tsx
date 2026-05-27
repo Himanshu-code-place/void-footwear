@@ -1,3 +1,5 @@
+import Script from "next/script";
+import WhatsAppButton from "@/src/components/ui/whatsapp-button";
 import AuthSessionProvider from "../src/providers/session-provider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -47,6 +49,11 @@ export default function RootLayout({
   </CartProvider>
 
 </AuthSessionProvider>
+<Script
+  src="https://checkout.razorpay.com/v1/checkout.js"
+/>
+
+     <WhatsAppButton />
 
       </body>
     </html>
